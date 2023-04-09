@@ -1,0 +1,59 @@
+Conectar a um usuário do mysql (trocar root pelo usuário desejado)
+mysql -u root -p
+
+Exibe todos os bancos de dados
+SHOW DATABASES;
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| teste1             |
++--------------------+
+
+Selecionar um banco de dados (trocar cursos pelo nome do banco desejado)
+use teste1;
+
+Visualizar as tabelas do banco de dados
+SHOW TABLES;
+
++------------------+
+| Tables_in_teste1 |
++------------------+
+| users            |
++------------------+
+
+Visualizar a estrutura de uma tabela (trocar usuário pelo nome da tabela desejada)
+DESCRIBE users;
+
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(20) | YES  |     | NULL    |                |
+| age   | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+
+Inserir registro em uma tabela
+INSERT INTO users (name, email, age) VALUES ('Lucas Tello', 'lucastelloweb@gmail.com', 26);
+
+Listar os registros de uma tabela
+SELECT * FROM users;
+
++----+----------------+-------------------------+------+
+| id | name           | email                   | age  |
++----+----------------+-------------------------+------+
+|  1 | Lucas Tello    | lucastelloweb@gmail.com |   26 |
+|  2 | Tiago Tello    | tfernando500@gmail.com  |   34 |
+|  3 | Roger Kennerly | rogerkn@hotmail.com     |   32 |
++----+----------------+-------------------------+------+
+
+Alterar registro de uma tabela
+UPDATE users SET age = 25 where id = 1;
+
+Deletar registro de uma tablea (nunca usar DELETE sem WHERE)
+DELETE FROM users WHERE id = 1;
