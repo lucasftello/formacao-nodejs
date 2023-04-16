@@ -8,7 +8,7 @@ const UserController = require('./controllers/UserController');
 
 const router = express.Router();
 
-// Site pages routes
+// Site page routes
 router.get('/', loadAllCategories, PageController.home);
 router.get('/article/:slug', loadAllCategories, PageController.article);
 router.get(
