@@ -1,0 +1,66 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+
+<section class="container py-5">
+  <% if(result.articles.count > 0) { %>
+    <h3 class="mb-5"><%= result.articles.count %> <%= result.articles.count > 1 ? 'artigos' : 'artigo' %> sobre <%= result.category.name %></h3>
+
+    <div class="row d-flex">
+      <% result.articles.rows.forEach(article => { %>
+        <div class="col-4 mb-4">
+          <div class="card card-article">
+            <div class="card-body text-center">
+              <span class="bg-info text-white rounded"><%= article.category.name %></span>
+              <h5 class="my-4"><%= article.title %></h5>
+              <a href="/article/<%= article.slug %>" class="btn btn-primary">Ler artigo</a>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="row mt-5">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+          <% if(result.page <= 1) { %>
+            <li class="page-item disabled">
+              <a href="javascript:void(0)" class="page-link">Anterior</a>
+            </li>
+          <% } else { %>
+            <li class="page-item">
+              <a href="/category/<%= result.category.slug %>?page=<%= result.page - 1 %>" class="page-link">Anterior</a>
+            </li>
+          <% } %>
+  
+          <% if(result.page > 1) { %>
+            <li class="page-item">
+              <a href="/category/<%= result.category.slug %>?page=<%= result.page - 1 %>" class="page-link"><%= result.page - 1 %></a>
+            </li>
+          <% } %>
+          <li class="page-item active">
+            <a href="javascript:void(0)" class="page-link"><%= result.page %></a>
+          </li>
+          <% if(result.nextPage) { %>
+            <li class="page-item">
+              <a href="/category/<%= result.category.slug %>?page=<%= result.page + 1 %>" class="page-link"><%= result.page + 1 %></a>
+            </li>
+          <% } %>
+  
+          <% if(!result.nextPage) { %>
+            <li class="page-item disabled">
+              <a href="javascript:void(0)" class="page-link">Próxima</a>
+            </li>
+          <% } else { %>
+            <li class="page-item">
+              <a href="/category/<%= result.category.slug %>?page=<%= result.page + 1 %>" class="page-link">Próxima</a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  <% } else { %>
+    <h3 class="mb-5">Nenhum artigo sobre <%= result.category.name %></h3>
+  <% } %>
+</section>
+
+<%- include('partials/footer.ejs') %>

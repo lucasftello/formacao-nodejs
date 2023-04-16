@@ -1,0 +1,47 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<section class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Artigos</h2>
+    <a href="/admin/articles/new" class="btn btn-success">Cadastrar Artigo</a>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Título</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if(articles.length > 0) { %>
+      <% articles.forEach(article => { %>
+        <tr>
+          <th scope="row"><%= article.id %></th>
+          <td><%= article.title %></td>
+          <td><%= article.slug %></td>
+          <td><%= article.category.name %></td>
+          <td width="170">
+            <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">Editar</a>
+            <form action="/articles/delete" method="POST" onsubmit="confirmDelete(event, this, 'Deseja deletar o artigo?')" class="d-inline">
+              <input type="hidden" name="id" value="<%= article.id %>">
+              <button class="btn btn-danger">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    <% } else { %>
+      <tr>
+        <td colspan="4" class="text-center">Nenhum artigo cadastrado</td>
+      </tr>
+    <% } %>
+    </tbody>
+  </table>
+</section>
+
+<%- include('../partials/footer.ejs') %>
+

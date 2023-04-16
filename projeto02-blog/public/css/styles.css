@@ -1,0 +1,12 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.card-article {
+  height: 200px;
+}
+
+.card-article span {
+  font-size: 13px;
+  padding: 2px 5px;
+}

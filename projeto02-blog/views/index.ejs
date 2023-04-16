@@ -1,0 +1,27 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+
+<section class="container py-5">
+  <div class="row d-flex">
+    <% articles.forEach(article => { %>
+      <div class="col-4 mb-4">
+        <div class="card card-article">
+          <div class="card-body text-center">
+            <span class="bg-info text-white rounded"><%= article.category.name %></span>
+            <h5 class="my-4"><%= article.title %></h5>
+            <a href="/article/<%= article.slug %>" class="btn btn-primary">Ler artigo</a>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="d-flex justify-content-center">
+      <%= user.name %>
+      <a href="/articles" class="btn btn-primary">Ver todos</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer.ejs') %>
